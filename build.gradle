@@ -1,1 +1,5 @@
 apply from: 'javafx.plugin'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
