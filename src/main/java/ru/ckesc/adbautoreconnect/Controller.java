@@ -2,16 +2,17 @@ package ru.ckesc.adbautoreconnect;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 
+import java.awt.*;
 import java.text.DateFormat;
 import java.util.Date;
 
 public class Controller implements StatusUpdater{
     @FXML
-    public Label statusLabel;
+    public javafx.scene.control.TextArea statusLabel;
     public TextField ipTextField;
     public ToggleButton connectButton;
 
@@ -25,8 +26,13 @@ public class Controller implements StatusUpdater{
 
     @SuppressWarnings("UnusedParameters")
     public void toggleConnect(ActionEvent actionEvent) {
-        if (connectButton.isSelected()) {
-            reConnecter.start();
+        toggle();
+    }
+
+    private void toggle() {
+        if (!connectButton.isPressed()) {
+            String ip = ipTextField.getText();
+            reConnecter.start(ip);
         } else {
             reConnecter.stop();
         }
@@ -37,5 +43,9 @@ public class Controller implements StatusUpdater{
         String nowTime = DateFormat.getTimeInstance().format(new Date());
         String logLine = String.format("%s: %s", nowTime, status);
         statusLabel.setText(logLine);
+    }
+
+    public void ipAction(ActionEvent actionEvent) {
+        connectButton.fire();
     }
 }

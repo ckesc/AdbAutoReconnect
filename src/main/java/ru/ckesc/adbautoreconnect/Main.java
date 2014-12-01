@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -16,6 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("Adb auto reconnect");
         primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png"))); //icon from http://www.flaticon.com/
         primaryStage.show();
     }
 
